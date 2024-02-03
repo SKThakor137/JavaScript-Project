@@ -6,8 +6,15 @@ body {
   height: 200px;
   width: 200px;
   border-radius: 20%;
-  border: 10px solid #000;
+  border: 0.5rem solid #000;
   margin: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn span {
+  font-weight: bold;
+  font-size: 1.25rem;
 }
 
 #btn-container {
