@@ -5,7 +5,7 @@ let btns = ["yellow", "red", "purple", "green"];
 let started = false;
 let level = 0;
 
-let h3 = document.querySelector("h3");
+let h4 = document.querySelector("h4");
 let body = document.querySelector("body");
 
 body.addEventListener("keypress", function () {
@@ -33,7 +33,7 @@ function userFlash(btn) {
 function levelUp() {
   userSeq = [];
   level++;
-  h3.innerHTML = `Level ${level}`;
+  h4.innerHTML = `Level ${level}`;
 
   let randIdx = Math.floor(Math.random() * btns.length);
   let randColor = btns[randIdx];
@@ -53,10 +53,10 @@ function checkAns(idx) {
   } else {
     document.querySelector("body").style.backgroundColor = "red";
     setTimeout(() => {
-      document.querySelector("body").style.backgroundColor = "white";
+      document.querySelector("body").style.backgroundColor = "#131f21";
     }, 200);
 
-    h3.innerHTML = `Game Over! Your Score was <b>${level}<b><br> Press any key to start`;
+    h4.innerHTML = `Game Over! Your Score was <b>${level}<b><br> Press any key to start`;
     let span = document.querySelector("span");
     if (level > highScore) {
       highScore = level;
