@@ -10,6 +10,7 @@ let h4 = document.querySelector("h4");
 let body = document.querySelector("body");
 let yourScore = document.querySelector(".your-score");
 let highScoreElement = document.querySelector(".high-score");
+let gameStartBtn = document.getElementById("startButton");
 
 if (highScore === null) {
   highScoreElement.innerText = 0;
@@ -17,19 +18,24 @@ if (highScore === null) {
   highScoreElement.innerText = highScore;
 }
 
-body.addEventListener("keypress", function () {
-  if (started == false) {
+function startGame() {
+  if (!started) {
     console.log("Game is started");
     started = true;
     levelUp();
   }
-});
+  gameStartBtn.disabled = true;
+  startButton.innerText = "Game Started";
+}
+
+gameStartBtn.addEventListener("click", startGame);
+body.addEventListener("keypress", startGame);
 
 function gameFlash(btn) {
   btn.classList.add("flash");
   setTimeout(function () {
     btn.classList.remove("flash");
-  }, 200);
+  }, 300);
 }
 
 function userFlash(btn) {
@@ -66,7 +72,7 @@ function checkAns(idx) {
       document.querySelector("body").style.backgroundColor = "#131f21";
     }, 200);
 
-    h4.innerHTML = `Game Over! Your Score was <b>${yourScore.innerText}</b><br> Press <b>any key</b> to start`;
+    h4.innerHTML = `Game Over! Your Score is : <b>${yourScore.innerText}</b><br> Press <b>any key</b> or <b>start button</b>  to start`;
     if (level > highScore) {
       highScore = level - 1;
       localStorage.setItem("simon-say", highScore);
@@ -94,8 +100,10 @@ for (btn of allBtns) {
 }
 
 function reset() {
+  level = 0;
   started = false;
   gameSeq = [];
   userSeq = [];
-  level = 0;
+  gameStartBtn.disabled = false;
+  startButton.innerText = "Start Game";
 }
